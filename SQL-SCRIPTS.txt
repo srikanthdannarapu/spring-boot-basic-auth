@@ -1,0 +1,12 @@
+create database basicauth;
+use basicauth;
+
+CREATE TABLE basicauth.USER (username varchar(50) primary key, password varchar(1000), enabled boolean not null);
+CREATE TABLE basicauth.authorities (username varchar(50) not null, authority varchar(50) not null, foreign key (username) references user(username));
+
+
+
+INSERT INTO USER (username, PASSWORD, enabled) VALUES ('user','$2a$10$jbIi/RIYNm5xAW9M7IaE5.WPw6BZgD8wcpkZUg0jm8RHPtdfDcMgm', true);
+INSERT INTO USER (username, PASSWORD, enabled) VALUES ('admin','$2a$10$jbIi/RIYNm5xAW9M7IaE5.WPw6BZgD8wcpkZUg0jm8RHPtdfDcMgm', true);
+insert into authorities (username, authority) values ('user', 'ROLE_USER');
+insert into authorities (username, authority) values ('admin', 'ROLE_ADMIN');
